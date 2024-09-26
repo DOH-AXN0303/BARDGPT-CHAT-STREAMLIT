@@ -114,7 +114,7 @@ with cols[2]:
     else:
       image = st.file_uploader("Upload your image", type=['png', 'jpg', 'jpeg'])
       url = st.text_input("Or paste your image url")
-else:
+    else:
     image = None
     url = ''
 
