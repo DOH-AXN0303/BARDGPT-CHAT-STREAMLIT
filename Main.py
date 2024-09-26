@@ -108,13 +108,14 @@ with cols[2]:
       csv_excel_atachment = st.toggle("Attach CSV or Excel", value=False, help="Activate this mode to attach a CSV or Excel file and let the chatbot read it")
 
         
+if image_attachment:
     if lang == 'Español':
-      image = st.file_uploader("Sube tu imagen", type=['png', 'jpg', 'jpeg'])
-      url = st.text_input("O pega la url de tu imagen")
+        image = st.file_uploader("Sube tu imagen", type=['png', 'jpg', 'jpeg'])
+        url = st.text_input("O pega la url de tu imagen")
     else:
-      image = st.file_uploader("Upload your image", type=['png', 'jpg', 'jpeg'])
-      url = st.text_input("Or paste your image url")
-    else:
+        image = st.file_uploader("Upload your image", type=['png', 'jpg', 'jpeg'])
+        url = st.text_input("Or paste your image URL")
+else:
     image = None
     url = ''
 
