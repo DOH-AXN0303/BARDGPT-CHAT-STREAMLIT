@@ -62,8 +62,8 @@ model = load_model()
 if 'chat' not in st.session_state:
     st.session_state.chat = model.start_chat()
 
-if 'chat_session' not in st.session_state:
-    st.session_state.chat_session = []
+# if 'chat_session' not in st.session_state:
+#     st.session_state.chat_session = []
 
 #st.session_state.chat_session
 
@@ -97,14 +97,14 @@ with cols[0]:
 
 with cols[1]:
     if lang == 'Español':
-      txt_atachment = st.toggle("Adjuntar archivo de texto", value=False, help="Activa este modo para adjuntar un archivo de texto y que el chatbot pueda leerlo")
+      txt_attachment = st.toggle("Adjuntar archivo de texto", value=False, help="Activa este modo para adjuntar un archivo de texto y que el chatbot pueda leerlo")
     else:
-      txt_atachment = st.toggle("Attach text file", value=False, help="Activate this mode to attach a text file and let the chatbot read it")
+      txt_attachment = st.toggle("Attach text file", value=False, help="Activate this mode to attach a text file and let the chatbot read it")
 with cols[2]:
     if lang == 'Español':
-      csv_excel_atachment = st.toggle("Adjuntar CSV o Excel", value=False, help="Activa este modo para adjuntar un archivo CSV o Excel y que el chatbot pueda leerlo")
+      csv_excel_attachment = st.toggle("Adjuntar CSV o Excel", value=False, help="Activa este modo para adjuntar un archivo CSV o Excel y que el chatbot pueda leerlo")
     else:
-      csv_excel_atachment = st.toggle("Attach CSV or Excel", value=False, help="Activate this mode to attach a CSV or Excel file and let the chatbot read it")
+      csv_excel_attachment = st.toggle("Attach CSV or Excel", value=False, help="Activate this mode to attach a CSV or Excel file and let the chatbot read it")
 
         
 if image_attachment:
@@ -119,7 +119,7 @@ else:
     url = ''
 
 
-if txt_atachment:
+if txt_attachment:
     if lang == 'Español':
       txtattachment = st.file_uploader("Sube tu archivo de texto", type=['txt'])
     else:
@@ -127,7 +127,7 @@ if txt_atachment:
 else:
     txtattachment = None
 
-if csv_excel_atachment:
+if csv_excel_attachment:
     if lang == 'Español':
       csvexcelattachment = st.file_uploader("Sube tu archivo CSV o Excel", type=['csv', 'xlsx'])
     else:
@@ -181,6 +181,8 @@ if prompt:
                     response = st.session_state.chat.send_message(prmt[0])
             except Exception as e:
                     st.session_state.chat.send_message(f'{type(e).__name__}: {e}')
+            with st.chat_message('ai'):
+                st.write(response.text)
             st.rerun()
 
 
