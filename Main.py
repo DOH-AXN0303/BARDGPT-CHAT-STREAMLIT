@@ -185,7 +185,7 @@ if prompt:
             except Exception as e:
                 with st.chat_message('ai'):
                     st.write(f'{type(e).__name__}: {e}')
-    st.rerun()
+            st.rerun()
 
 
 
