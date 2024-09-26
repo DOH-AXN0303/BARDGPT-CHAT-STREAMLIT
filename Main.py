@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import google.generativeai as genai
+# from vertexai.generative_models import GenerativeModel, Part, SafetySetting
 import re
 import os
 from PIL import Image
@@ -80,7 +81,7 @@ def load_modelvision() -> genai.GenerativeModel:
     The function `load_modelvision` loads a generative model for vision tasks using the `gemini-pro-vision` model.
     :return: an instance of the `genai.GenerativeModel` class.
     """
-    model = genai.GenerativeModel('gemini-pro')
+    model = genai.GenerativeModel('Gemini 1.0 Pro Vision')
     return model
 
 
