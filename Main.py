@@ -179,12 +179,13 @@ if prompt:
                     response.resolve()
                 else:
                     response = st.session_state.chat.send_message(prmt[0])
-                with st.chat_message('ai'):
-                    st.write(response.text)    
+            with st.chat_message('ai'):
+                st.write(response.text) 
+                
             except Exception as e:
                 with st.chat_message('ai'):
                     st.write(f'{type(e).__name__}: {e}')
-            st.rerun()
+    st.rerun()
 
 
 
