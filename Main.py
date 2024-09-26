@@ -71,7 +71,7 @@ def load_model() -> genai.GenerativeModel:
     'gemini-pro'.
     :return: an instance of the `genai.GenerativeModel` class.
     """
-    model = genai.GenerativeModel('gemini-flash')
+    model = genai.GenerativeModel('gemini-pro')
     return model
 
 @st.cache_resource
@@ -80,7 +80,7 @@ def load_modelvision() -> genai.GenerativeModel:
     The function `load_modelvision` loads a generative model for vision tasks using the `gemini-pro-vision` model.
     :return: an instance of the `genai.GenerativeModel` class.
     """
-    model = genai.GenerativeModel('gemini-flash')
+    model = genai.GenerativeModel('gemini-pro')
     return model
 
 
@@ -110,9 +110,8 @@ if 'messages' not in st.session_state:
 if 'welcome' not in st.session_state or lang != st.session_state.lang:
     st.session_state.lang = lang
     welcome  = model.generate_content(f'''
-    Da un saludo de bienvenida al usuario y sugiere que puede hacer
-    (Puedes describir imágenes, responder preguntas, leer archivos texto, leer tablas,generar gráficos con graphviz, etc)
-    eres un chatbot en una aplicación de chat creada en streamlit y python. generate the answer in {lang}''')
+    Give a short friendly welcome greeting to the user and suggest what they can do (You can describe images, answer questions, read text files, and read tables). your name is Pubby Healthy. Introduce yourself. generate the answer in {lang}''')
+
     welcome.resolve()
     st.session_state.welcome = welcome
 
