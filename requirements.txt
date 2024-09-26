@@ -1,5 +1,4 @@
 streamlit
-google-cloud-aiplatform
-# google-generativeai
+google-generativeai
 pandas
 numpy
