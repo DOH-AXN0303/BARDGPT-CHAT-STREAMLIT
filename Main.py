@@ -76,8 +76,7 @@ if 'messages' not in st.session_state:
 if 'welcome' not in st.session_state or lang != st.session_state.lang:
     st.session_state.lang = lang
     welcome  = model.generate_content(f'''
-    Give a friendly and funny welcome greeting to the user and suggest what they can do (You can describe images, answer questions, read text files, read tables, 
-    generate graphs with graphviz) You are a chatbot in a chat application created with Streamlit and Python. generate the answer in {lang}''')
+    Give a brief friendly welcome greeting to the user and suggest what they can do (You can describe images, answer questions, read text files, and read tables). Your name is Pubby Healthy. Introduce your self. generate the answer in {lang}''')
     welcome.resolve()
     st.session_state.welcome = welcome
 
