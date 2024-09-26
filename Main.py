@@ -173,19 +173,16 @@ if prompt:
     else:
       spinertxt = 'I am thinking. Be right with you ...'
     with st.spinner(spinertxt):
-            try:
-                if len(prmt) > 1:
-                    response = st.session_state.chat.send_message(prmt)
-                    response.resolve()
-                else:
-                    response = st.session_state.chat.send_message(prmt[0])
-                with st.chat_message('ai'):
-                    st.write(response.text) 
-                
-            except Exception as e:
-                with st.chat_message('ai'):
-                    st.write(f'{type(e).__name__}: {e}')
-            st.rerun()
+        try:
+            response = st.session_state.chat.send_message(prmt)
+            response.resolve()
+            with st.chat_message('ai'):
+                st.write(response.text) 
+            
+        except Exception as e:
+            with st.chat_message('ai'):
+                st.write(f'{type(e).__name__}: {e}')
+        st.rerun()
 
 
 
