@@ -6,23 +6,20 @@ from PIL import Image
 import requests
 import os
 
-#Je t'aime plus que les mots,
-#Plus que les sentiments,
-#Plus que la vie elle-même
 
 st.set_page_config(
-    page_title="Google AI Chat",
+    page_title="Talk to your pics!",
     page_icon="https://seeklogo.com/images/G/google-ai-logo-996E85F6FD-seeklogo.com.png",
     layout="wide",
 )
 # Path: Main.py
-#Author: Sergio Demis Lopez Martinez
+# Adopted by: Ali Nazem
 #------------------------------------------------------------
 #HEADER
 st.markdown('''
 Powered by Google AI <img src="https://seeklogo.com/images/G/google-ai-logo-996E85F6FD-seeklogo.com.png" width="20" height="20">
 , Streamlit and Python''', unsafe_allow_html=True)
-st.caption("By Sergio Demis Lopez Martinez")
+st.caption("By Ali Nazem. For educational purposes ONLY")
 
 #------------------------------------------------------------
 #LANGUAGE
@@ -42,18 +39,18 @@ st.divider()
 
 #------------------------------------------------------------
 #FUNCTIONS
-def extract_graphviz_info(text: str) -> list[str]:
-  """
-  The function `extract_graphviz_info` takes in a text and returns a list of graphviz code blocks found in the text.
+# def extract_graphviz_info(text: str) -> list[str]:
+#   """
+#   The function `extract_graphviz_info` takes in a text and returns a list of graphviz code blocks found in the text.
 
-  :param text: The `text` parameter is a string that contains the text from which you want to extract Graphviz information
-  :return: a list of strings that contain either the word "graph" or "digraph". These strings are extracted from the input
-  text.
-  """
+#   :param text: The `text` parameter is a string that contains the text from which you want to extract Graphviz information
+#   :return: a list of strings that contain either the word "graph" or "digraph". These strings are extracted from the input
+#   text.
+#   """
 
-  graphviz_info  = text.split('```')
+#   graphviz_info  = text.split('```')
 
-  return [graph for graph in graphviz_info if ('graph' in graph or 'digraph' in graph) and ('{' in graph and '}' in graph)]
+#   return [graph for graph in graphviz_info if ('graph' in graph or 'digraph' in graph) and ('{' in graph and '}' in graph)]
 
 def append_message(message: dict) -> None:
     """
@@ -115,9 +112,8 @@ if 'messages' not in st.session_state:
 if 'welcome' not in st.session_state or lang != st.session_state.lang:
     st.session_state.lang = lang
     welcome  = model.generate_content(f'''
-    Da un saludo de bienvenida al usuario y sugiere que puede hacer
-    (Puedes describir imágenes, responder preguntas, leer archivos texto, leer tablas,generar gráficos con graphviz, etc)
-    eres un chatbot en una aplicación de chat creada en streamlit y python. generate the answer in {lang}''')
+    Give a friendly and funny welcome greeting to the user and suggest what they can do (You can describe images, answer questions, read text files, read tables, 
+    generate graphs with graphviz) You are a chatbot in a chat application created with Streamlit and Python. generate the answer in {lang}''')
     welcome.resolve()
     st.session_state.welcome = welcome
 
@@ -209,7 +205,7 @@ else:
 if lang == 'Español':
   prompt = st.chat_input("Escribe tu mensaje")
 else:
-  prompt = st.chat_input("Write your message")
+  prompt = st.chat_input("What's on your mind?")
 
 if prompt:
     txt = ''
@@ -249,17 +245,17 @@ if prompt:
     if lang == 'Español':
       spinertxt = 'Espera un momento, estoy pensando...'
     else:
-      spinertxt = 'Wait a moment, I am thinking...'
+      spinertxt = 'I am thinking. Be right with you ...'
     with st.spinner(spinertxt):
         if len(prmt['parts']) > 1:
             response = vision.generate_content(prmt['parts'],stream=True,safety_settings=[
         {
             "category": "HARM_CATEGORY_HARASSMENT",
-            "threshold": "BLOCK_LOW_AND_ABOVE",
+            "threshold": "BLOCK_ONLY_HIGH",
         },
         {
             "category": "HARM_CATEGORY_HATE_SPEECH",
-            "threshold": "BLOCK_LOW_AND_ABOVE",
+            "threshold": "BLOCK_ONLY_HIGH",
         },
     ]
 )
