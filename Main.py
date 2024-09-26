@@ -91,9 +91,9 @@ cols=st.columns(3)
 
 with cols[0]:
     if lang == 'Español':
-      image_atachment = st.toggle("Adjuntar imagen", value=False, help="Activa este modo para adjuntar una imagen y que el chatbot pueda leerla")
+      image_attachment = st.toggle("Adjuntar imagen", value=False, help="Activa este modo para adjuntar una imagen y que el chatbot pueda leerla")
     else:
-      image_atachment = st.toggle("Attach image", value=False, help="Activate this mode to attach an image and let the chatbot read it")
+      image_attachment = st.toggle("Attach image", value=False, help="Activate this mode to attach an image and let the chatbot read it")
 
 with cols[1]:
     if lang == 'Español':
